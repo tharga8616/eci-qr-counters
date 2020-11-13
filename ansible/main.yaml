@@ -1,0 +1,27 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files: vars.yaml
+
+  tasks:
+    - name: provisioning config 
+      copy:
+        src: dashboards_provisioner.yaml
+        dest: /var/lib/docker/volumes/ecimonitoring_grafana-dashboards/_data/dashboards/dashboards_provisioner.yaml
+
+    - name: generate dashboard
+      template: 
+        src: qr_counter.json.j2
+        dest: /var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_counter.json
+
+    - name: create nc script to feed graphite
+      template:
+        src: qr_counter.sh.j2
+        dest: /root/eci-grafana/eci-monitoring/graphite/eci/qr-counter.sh 
+        mode: 0755
+
+    - name: cronjob that updates graphite each 5 minuts
+      cron:
+        name: "update graphite qr counters"
+        minute: "*/5"
+        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr-counter.sh"
