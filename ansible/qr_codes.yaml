@@ -1,0 +1,27 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files: vars.yaml
+
+  tasks:
+
+    - name: insert random grafana code into qr_list per user
+      set_fact:
+        qr_list_aux: "{{ qr_list_aux | default([]) + [ new_item ] }}"
+      vars:
+        new_item:      
+          number_of_posters: "{{ item.number_of_posters }}"
+          email: "{{ item.email }}"
+          grafana_code: "{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+      loop: "{{ qr_list }}"
+
+    - name: debug
+      debug: 
+        msg: "{{ item }}"
+        loop: "{{ qr_list_aux }}"
+
+    - name: Generate qr codes images
+      command: "qrencode -o ./qr_codes/{{ item.code }}.png 'https://firma.rentabasicauniversal.es/' -m 2 -s 6"
+      loop: "{{ qr_list }}"
+
+

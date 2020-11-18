@@ -1,6 +1,9 @@
 qr_list:
-  - id: madrid.rivas.artesano
-    code: adfe
-  - id: madrid.rivas.tharga8616
-    code: hefd
-
+  - number_of_posters: 1
+    email: tharga8616@gmail.com
+  - number_of_posters: 2
+    email: tharga8616@gmail.com
+  - number_of_posters: 4
+    email: tharga8616@gmail.com
+    
+    
