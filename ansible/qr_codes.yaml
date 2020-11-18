@@ -18,10 +18,26 @@
     - name: debug
       debug: 
         msg: "{{ item }}"
-        loop: "{{ qr_list_aux }}"
+      loop: "{{ qr_list_aux }}"
 
-    - name: Generate qr codes images
-      command: "qrencode -o ./qr_codes/{{ item.code }}.png 'https://firma.rentabasicauniversal.es/' -m 2 -s 6"
-      loop: "{{ qr_list }}"
+    - name: generate qr_ids
+      set_fact:
+        qr_list_aux2: "{{ qr_list_aux2 | default([]) + [ new_item ] }}"
+      vars:
+        new_item:
+          number_of_posters: "{{ item.number_of_posters }}"
+          email: "{{ item.email }}"
+          grafana_code: "{{ item.grafana_code }}"
+          qr_codes: "{{ range(0, item.number_of_posters  | int) | list }}"
+      loop: "{{ qr_list_aux }}"
+
+    - name: debug
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ qr_list_aux2 }}"
+ 
+    - name: generate qr codes images
+      command: "qrencode -o ./qr_codes/{{ item.0.grafana_code }}-{{ item.1 }}.png 'https://firma.rentabasicauniversal.es/' -m 2 -s 6"
+      loop: "{{ qr_list_aux2|subelements('qr_codes') }}"
 
 
