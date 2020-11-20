@@ -1,0 +1,7 @@
+qr_list:
+{% for user in qr_list_aux2 %}
+  - email: "{{ user.email }}"
+    grafana_code: "{{ user.grafana_code }}"
+    number_of_posters: "{{ user.number_of_posters }}"
+    qr_codes: {{ user.qr_codes }}
+{% endfor%}
