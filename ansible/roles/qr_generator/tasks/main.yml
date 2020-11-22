@@ -1,7 +1,20 @@
 ---
-    - name: generate qr codes images
-      command: "qrencode -o ./media/qr_images/{{ item.0.grafana_code }}-{{ item.1 }}.png 'https://firma.rentabasicauniversal.es/' -m 2 -s 6"
+    - name: create directories for each qr list element
+      file:
+        path: "./media/qr_images/{{ item.0.grafana_code }}"
+        state: directory
       loop: "{{ qr_list|subelements('qr_codes') }}"
+
+    - name: generate qr code images
+      command: "qrencode -o ./media/qr_images/{{ item.0.grafana_code }}/{{ item.0.grafana_code }}-{{ item.1 }}.png 'https://firma.rentabasicauniversal.es/{{ item.0.grafana_code }}-{{ item.1 }}' -m 2 -s 6"
+      loop: "{{ qr_list|subelements('qr_codes') }}"
+
+    - name: zip qr code images
+      archive:
+        path: "./media/qr_images/{{ item.grafana_code }}/*"
+        dest: "./media/qr_images/{{ item.grafana_code }}.zip"
+        format: zip
+      loop: "{{ qr_list }}"
 
     - debug:
         var: phrases
@@ -17,4 +30,23 @@
     - name: Generate PDF document
       command: "asciidoctor-pdf -a pdf-stylesdir=./common-resources/themes -a pdf-fontsdir=./common-resources/fonts -o ./media/posters/pdf/{{ item.grafana_code }}.pdf ./media/posters/adoc/{{ item.grafana_code }}.adoc"
       ignore_errors: yes
+      loop: "{{ qr_list }}"
+
+    - name: Sending an e-mail using pepipost SMTP servers
+      community.general.mail:
+        host: smtp.pepipost.com
+        port: 587
+        username: "{{ username }}"
+        password: "{{ password }}"
+        from: "{{ from_email }}"
+        to:
+          - "{{ to_tharga8616 }}"
+          - "{{ to_victor }}"
+        subject: "Test"
+        body: "Aquí tienes tus qr"
+        attach:
+          - "./media/qr_images/{{ item.grafana_code }}.zip"
+          - "./media/posters/pdf/{{ item.grafana_code }}.pdf"
+      delegate_to: localhost
+      tags: mail
       loop: "{{ qr_list }}"
