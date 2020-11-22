@@ -50,5 +50,5 @@
           - "./media/qr_images/{{ item.grafana_code }}.zip"
           - "./media/posters/pdf/{{ item.grafana_code }}.pdf"
       delegate_to: localhost
-      tags: mail
+      ignore_errors: yes        
       loop: "{{ qr_list }}"
