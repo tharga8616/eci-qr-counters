@@ -6,4 +6,24 @@ qr_list:
   - number_of_posters: 4
     email: tharga8616@gmail.com
     
-    
+phrases:
+  - first: "¿TE BENEFICIA LA RENTA BÁSICA?"
+    second: "¡ESCANÉAME Y LO SABRÁS!"
+  - first: "¿QUIERES 9000 € AL AÑO DE POR VIDA?"
+    second: "¡ENTRA AQUÍ Y FIRMA!"
+  - first: "¿QUIERES ACABAR CON LA POBREZA?"
+    second: "FIRMA ESTA INCIATIVA"
+  - first: "¿QUIERES MEJORAR TU VIDA Y LA DE LOS TUYOS?"
+    second: "ENTRA Y APRENDE CÓMO"
+  - first: "¿QUIERES MEJORAR EL MUNDO? NOSOTROS TAMBIÉN"
+    second: "¡ESCANEÁME!"
+  - first: "TU FUTURO ESTÁ EN ESTE QR"
+    second: "HAZ QUE OCURRA"
+  - first: "¡EH! ¿TIENES DOS MINUTOS?"
+    second: "FIRMA NUESTRA INICIATIVA, TE BENEFICIA"
+  - first: "CONOCE LA INICIATIVA PARA IMPLANTAR UNA RENTA BÁSICA EN EUROPA"
+    second: "SEGURO QUE FIRMAS POR ELLA"
+  - first: "¿QUÉ ES ESO DE LA RENTA BÁSICA?"
+    second: "INFÓRMATE AQUÍ"
+  - first: "¿VAS A PASAR DE ESTE QR TAMBIÉN?"
+    second: "SI PASAS NO COBRARÁS..."

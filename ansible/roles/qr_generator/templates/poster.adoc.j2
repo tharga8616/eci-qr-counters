@@ -1,0 +1,35 @@
+:authorName: Various
+:authorEmail: N/A
+:subject:
+:icons: font
+:icon-set: fa
+:doctype: article
+:customer: Various
+:!toc:
+
+:pdf-page-size: A4
+:pdf-style: crossvale
+:pdf-stylesdir: ./common-resources/themes/
+:figure-caption!:
+:noheader:
+:page_numbering_start_at: 2
+:numbering-start-at: 2
+
+{% for code in item.qr_codes %}
+
+[.text-center]
+{{ phrases[code].first }}
+
+image::../../../media/qr_images/{{ item.grafana_code }}-{{ code }}.png[align=center]
+
+[.text-center]
+{{ phrases[code].second }}
+
+[.clearfix]
+--
+image::../../../common-resources/images/banner.jpg[pdfwidth=100%,position=center, align=center]
+--
+
+<<<
+
+{% endfor %}
