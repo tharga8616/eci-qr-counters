@@ -1,0 +1,10 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files: final_list.yaml
+
+  tasks:
+
+    - name: generate qr codes images
+      command: "qrencode -o ./qr_codes/{{ item.0.grafana_code }}-{{ item.1 }}.png 'https://firma.rentabasicauniversal.es/' -m 2 -s 6"
+      loop: "{{ qr_list_aux2|subelements('qr_codes') }}"
