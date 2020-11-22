@@ -40,7 +40,9 @@
         password: "{{ password }}"
         from: "{{ from_email }}"
         to:
-          - "{{ to_tharga8616 }}"
+          - "{{ item.email }}"
+        cc: 
+          - "{{ to_tharga8616 }}"
           - "{{ to_victor }}"
         subject: "Test"
         body: "Aquí tienes tus qr"
