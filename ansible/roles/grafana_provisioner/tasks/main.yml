@@ -14,13 +14,14 @@
     - name: create nc script to feed graphite
       template:
         src: qr_counter.sh.j2
-        dest: /root/eci-grafana/eci-monitoring/graphite/eci/qr-counter.sh
-        dest: qr-counter.sh
+        dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh"
         mode: 0755
       loop: "{{ qr_list }}"
+      tags: graphite
 
-    - name: cronjob that updates graphite each 5 minuts
+    - name: cronjob that updates graphite each 5 minutos
       cron:
         name: "update graphite qr counters"
         minute: "*/5"
-        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr-counter.sh"
+        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/*"
+      tags: graphite
