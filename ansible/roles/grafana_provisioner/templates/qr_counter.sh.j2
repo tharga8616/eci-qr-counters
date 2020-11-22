@@ -4,9 +4,9 @@
 PORT=2003
 SERVER=$(docker inspect --format='{{ '{{' }}range .NetworkSettings.Networks{{ '}}' }}{{ '{{' }}.IPAddress{{ '}}' }}{{ '{{' }}end{{ '}}' }}' graphite)
 
-{% for qr_code in qr_list %}
-# ID: {{ qr_code.id }} CODE: {{ qr_code.code }}
-COUNT=$(cat /var/log/nginx/ice_access.log|grep '"GET /{{ qr_code.code }}'|egrep -v 'sempi.tech|applebot|Twitterbot|externalhit_uatext.php|datagnionbot|Semanticbot|Mediatoolkitbot' | awk '{print $1}' | uniq| wc -l)
-echo contador.{{ qr_code.id }} $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0
+{% for panel in item.qr_codes %}
+# ID: {{ item.grafana_code }} CODE: {{ panel }}
+COUNT=$(cat /var/log/nginx/ice_access.log|grep '"GET /{{ item.grafana_code }}-{{ panel }}'|egrep -v 'sempi.tech|applebot|Twitterbot|externalhit_uatext.php|datagnionbot|Semanticbot|Mediatoolkitbot' | awk '{print $1}' | uniq| wc -l)
+echo contador.{{ item.grafana_code }}-{{ panel }} $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0
 
 {% endfor %}

@@ -7,13 +7,17 @@
     - name: generate dashboard
       template:
         src: qr_counter.json.j2
-        dest: /var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_counter.json
+        dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_counter_{{ item.grafana_code }}.json"
+      loop: "{{ qr_list }}"
+      tags: counter
 
     - name: create nc script to feed graphite
       template:
         src: qr_counter.sh.j2
         dest: /root/eci-grafana/eci-monitoring/graphite/eci/qr-counter.sh
+        dest: qr-counter.sh
         mode: 0755
+      loop: "{{ qr_list }}"
 
     - name: cronjob that updates graphite each 5 minuts
       cron:

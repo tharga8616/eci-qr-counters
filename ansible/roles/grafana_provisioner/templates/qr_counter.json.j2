@@ -68,11 +68,11 @@
       },
       "pluginVersion": "7.1.5",
       "targets": [
-{%- for qr_code in qr_list %}{{ comma1() }}
+{%- for panel in item.qr_codes %}{{ comma1() }}
         {
           "refCount": 0,
-          "refId": "{{ qr_code.code }}",
-          "target": "alias(contador.{{ qr_code.id }}, '{{ qr_code.id }}')"
+          "refId": "{{ item.grafana_code }}-{{ panel }}",
+          "target": "alias(contador.{{ item.grafana_code }}-{{ panel }}, '{{ item.grafana_code }}-{{ panel }}')"
         }
 {%- endfor %}
 
@@ -146,11 +146,11 @@
       "stack": false,
       "steppedLine": false,
       "targets": [
-{%- for qr_code in qr_list %}{{ comma2() }} 
+{%- for panel in item.qr_codes %}{{ comma1() }}
         {
           "refCount": 0,
-          "refId": "{{ qr_code.code }}",
-          "target": "alias(contador.{{ qr_code.id }}, '{{ qr_code.id }}')"
+          "refId": "{{ item.grafana_code }}-{{ panel }}",
+          "target": "alias(contador.{{ item.grafana_code }}-{{ panel }}, '{{ item.grafana_code }}-{{ panel }}')"
         }
 {%- endfor %}
 
@@ -225,7 +225,7 @@
     ]
   },
   "timezone": "",
-  "title": "Contadores",
-  "uid": "gZmBZ5Rgas",
-  "version": 5
+  "title": "{{ item.grafana_code }}",
+  "uid": "{{ item.grafana_code }}",
+  "version": 1
 }
