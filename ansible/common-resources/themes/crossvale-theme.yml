@@ -3,40 +3,40 @@ font:
   catalog:
     # Noto Serif supports Latin, Latin-1 Supplement, Latin Extended-A, Greek, Cyrillic, Vietnamese & an assortment of symbols
     Noto Serif:
-      normal:                 notoserif-regular-subset.ttf
-      bold:                   notoserif-bold-subset.ttf
+      normal:                 futura-bold.ttf
+      bold:                   futura-bold.ttf
       italic:                 notoserif-italic-subset.ttf
-      bold_italic:            notoserif-bold_italic-subset.ttf
+      bold_italic:            futura-bold.ttf
     # M+ 1mn supports ASCII and the circled numbers used for conums
     M+ 1mn:
-      normal:                 mplus1mn-regular-ascii-conums.ttf
-      bold:                   mplus1mn-bold-ascii.ttf
+      normal:                 futura-bold.ttf
+      bold:                   futura-bold.ttf
       italic:                 mplus1mn-italic-ascii.ttf
-      bold_italic:            mplus1mn-bold_italic-ascii.ttf
+      bold_italic:            futura-bold.ttf
     # M+ 1p supports Latin, Latin-1 Supplement, Latin Extended, Greek, Cyrillic, Vietnamese, Japanese & an assortment of symbols
     # It also provides arrows for ->, <-, => and <= replacements in case these glyphs are missing from font
     M+ 1p Fallback:
-      normal:                 mplus1p-regular-fallback.ttf
-      bold:                   mplus1p-regular-fallback.ttf
+      normal:                 futura-bold.ttf
+      bold:                   futura-bold.ttf
       italic:                 mplus1p-regular-fallback.ttf
-      bold_italic:            mplus1p-regular-fallback.ttf
+      bold_italic:            futura-bold.ttf
     Liberation Sans:
-      normal:                 LiberationSans-Regular.ttf
-      italic:                 LiberationSans-Italic.ttf
+      normal:                 futura-bold.ttf
+      italic:                 futura-bold.ttf
       bold:                   LiberationSans-Bold.ttf
-      bold_italic:            LiberationSans-BoldItalic.ttf
+      bold_italic:            futura-bold.ttf
   fallbacks:
     - M+ 1p Fallback
 page:
   background_color:           ffffff
   layout:                     portrait
-  margin:                     [1.5in, 0.67in, 1.5in, 0.67in]
+  margin:                     [1.5in, 0.67in, 0.5in, 0.67in]
   size:                       A4
 #some additional variables
 confidentiality:
 customer:
 base:
-  align:                      left
+  align:                      center
   # color as hex string (leading # is optional)
   font_color:                 333333
   # color as RGB array
@@ -129,7 +129,7 @@ block:
   margin_top:                 0
   margin_bottom:              $vertical_rhythm
 caption:
-  align:                      left
+  align:                      center
   font_style:                 italic
   font_size:                  9
   # FIXME perhaps set line_height instead of / in addition to margins?
@@ -237,7 +237,7 @@ header:
   font_size:                  $base_font_size_large
   font_color:                 $base_font_color
   font_family:                Liberation Sans
-  font_style:                 bold
+  font_style:                 italic
   height:                     0.8in
   line_height:                1
   padding:                    [25, 1, 0, 1]
@@ -256,7 +256,7 @@ footer:
   font_size:                  $base_font_size_small
   font_color:                 $base_font_color
   font_family:                Liberation Sans
-  font_style:                 bold
+  font_style:                 italic
   # NOTE if background_color is set, background and border will span width of page
   border_color:               dddddd
   border_width:               0.25
@@ -274,30 +274,30 @@ footer:
   # * {chapter-title}
   # * {section-title}
   # * {section-or-chapter-title}
-  recto_content:
-    #right:                   '{section-or-chapter-title} | {page-number}'
-    left:                     |
-            {customer} +
-            {confidentiality}
-    center:                   |
-            {document-title} +
-            {description}
-    #right:                   '{page-number}'
-    right:                    |
-            {page-number} +
-            v{revnumber}
-  verso_content:
-    #left:                    '{page-number} | {chapter-title}'
-    left:                     |
-            {customer} +
-            {confidentiality}
-    center:                   |
-            {document-title} +
-            {description}
-    right:                    |
-            {page-number} +
-            v{revnumber}
-    #right:                   '{page-number}'
+#  recto_content:
+#    #right:                   '{section-or-chapter-title} | {page-number}'
+#    left:                     |
+#            {customer} +
+#            {confidentiality}
+#    center:                   |
+#            {document-title} +
+#            {description}
+#    #right:                   '{page-number}'
+#    right:                    |
+#            {page-number} +
+#            v{revnumber}
+#  verso_content:
+#    #left:                    '{page-number} | {chapter-title}'
+#    left:                     |
+#            {customer} +
+#            {confidentiality}
+#    center:                   |
+#            {document-title} +
+#            {description}
+#    right:                    |
+#            {page-number} +
+#            v{revnumber}
+#    #right:                   '{page-number}'
     #center:                  '{page-number}'
 note:
   background_color:           #cccccc

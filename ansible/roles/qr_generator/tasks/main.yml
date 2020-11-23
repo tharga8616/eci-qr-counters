@@ -25,12 +25,15 @@
         src: "poster.adoc.j2"
         dest: "./media/posters/adoc/{{ item.grafana_code }}.adoc"
       loop: "{{ qr_list }}"
-      tags: template
+      tags: 
+        - template
+        - asciidoc
 
     - name: Generate PDF document
       command: "asciidoctor-pdf -a pdf-stylesdir=./common-resources/themes -a pdf-fontsdir=./common-resources/fonts -o ./media/posters/pdf/{{ item.grafana_code }}.pdf ./media/posters/adoc/{{ item.grafana_code }}.adoc"
       ignore_errors: yes
       loop: "{{ qr_list }}"
+      tags: asciidoc
 
     - name: Sending an e-mail using pepipost SMTP servers
       community.general.mail:

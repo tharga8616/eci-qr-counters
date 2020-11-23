@@ -6,20 +6,20 @@
 :doctype: article
 :customer: Various
 :!toc:
+:sectnums!:
 
 :pdf-page-size: A4
 :pdf-style: crossvale
 :pdf-stylesdir: ./common-resources/themes/
 :figure-caption!:
-:noheader:
-:nofooter:
 
 {% for code in item.qr_codes %}
 
 [.text-center]
 {{ phrases[code].first }}
 
-image::../../../media/qr_images/{{ item.grafana_code }}/{{ item.grafana_code }}-{{ code }}.png[align=center]
+.{{item.grafana_code}}-{{ code }}
+image::../../../media/qr_images/{{ item.grafana_code }}/{{ item.grafana_code }}-{{ code }}.png[pdfwidth=30%,align=center]
 
 [.text-center]
 {{ phrases[code].second }}
