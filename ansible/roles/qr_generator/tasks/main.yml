@@ -47,7 +47,7 @@
         cc:
           - "{{ to_tharga8616 }}"
           - "{{ to_victor }}"
-        subject: "🔥Ya tienes aquí los QR solicitados 🔳"
+        subject: "🔥 Ya tienes aquí los QR solicitados 🔳"
         body: |
           ¡Comenzamos! Ya tienes aquí los QR solicitados.
 
@@ -69,7 +69,7 @@
           Queremos llenar España de QR y la ICE de firmas!¡Mucho ánimo!
 
 
-          Bonus: utiliza este enlace personalizado para enviar por redes sociales, whatsapp, email, etc. También incluye monitorización!
+          BONUS: utiliza este enlace personalizado para enviar por redes sociales, whatsapp, email, etc. También incluye monitorización!
           https://firma.rentabasicauniversal.es/{{ item.grafana_code }}-ice
           Si tienes cualquier duda técnica, no dudes en consultar a Carlos: tharga8616@gmail.com
 
