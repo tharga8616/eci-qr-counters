@@ -6,7 +6,7 @@
       loop: "{{ qr_list }}"
 
     - name: generate qr code images
-      command: "qrencode -o ./media/qr_images/{{ item.0.grafana_code }}/{{ item.0.grafana_code }}-{{ item.1 }}.png 'https://firma.rentabasicauniversal.es/{{ item.0.grafana_code }}-{{ item.1 }}' -m 2 -s 6"
+      command: "qrencode -o ./media/qr_images/{{ item.0.grafana_code }}/{{ item.0.grafana_code }}-{{ item.1 }}.svg 'https://firma.rentabasicauniversal.es/{{ item.0.grafana_code }}-{{ item.1 }}' -m 2 -s 6 -t svg"
       loop: "{{ qr_list|subelements('qr_codes') }}"
 
     - name: zip qr code images
@@ -51,7 +51,7 @@
         body: |
           ¡Comenzamos! Ya tienes aquí los QR solicitados.
 
-          En este email encontrarás 2 archivos adjuntos, un zip comprimido con todas las imágenes de los QR en formato jpg, por si quieres hacer tus propios carteles, y un PDF listo para imprimir y pasar a la acción.
+          En este email encontrarás 2 archivos adjuntos, un zip comprimido con todas las imágenes de los QR, por si quieres hacer tus propios carteles, y un PDF listo para imprimir y pasar a la acción.
 
           Cada QR tiene un código alfanumérico que nos permitirá tomar las mediciones que necesitamos y a fin de evaluar su éxito. Tu también vas a poder ver cuántas veces han sido escaneados tus QR en nuestro centro de monitorización online.
 
