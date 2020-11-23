@@ -25,7 +25,7 @@
         src: "poster.adoc.j2"
         dest: "./media/posters/adoc/{{ item.grafana_code }}.adoc"
       loop: "{{ qr_list }}"
-      tags: 
+      tags:
         - template
         - asciidoc
 
@@ -44,32 +44,38 @@
         from: "{{ from_email }}"
         to:
           - "{{ item.email }}"
-        cc: 
+        cc:
           - "{{ to_tharga8616 }}"
          # - "{{ to_victor }}"
-        subject: "🔳 Ya tienes aquí los QR solicitados"
+        subject: "🔥Ya tienes aquí los QR solicitados 🔳"
         body: |
-          ¡Comenzamos!  Ya tienes aquí los QR solicitados. 
-          
-          En este email encontrarás 2 archivos adjuntos, un zip comprimido con las imágenes de los QR en formato jpg, por si quieres hacer tus propios carteles, y un PDF listo para imprimir y pasar a la acción. 
-          
-          Cada QR tiene un código alfanumérico que nos permitirá tomar las mediciones que necesitamos y a fin de evaluar su éxito. Tu también vas a poder ver cuántas veces han sido escaneados tus QR en nuestro centro de monitorización online. 
-          
-          Este código tiene la forma "xxxxxxxx-#", donde los primeros 8 caracteres corresponden a tu identificador único, que en tu caso es el "{{ item.grafana_code }}", y el último carácter después del guión corresponde al identificador de QR, que es un dígito que va del 0 al número de QR que hayas pedido. Si quieres puedes hacerte una tabla y apuntar en qué calle o localización colocaste el cartel correspondiente al último dígito, para llevar un mejor control, saber si han podido retirar el cartel, cuál es el que tiene mayor visibilidad, etc. 
-          
-          Aquí tienes tu panel personal asociado a los QR adjuntos en este email. 
+          ¡Comenzamos! Ya tienes aquí los QR solicitados.
+
+          En este email encontrarás 2 archivos adjuntos, un zip comprimido con todas las imágenes de los QR en formato jpg, por si quieres hacer tus propios carteles, y un PDF listo para imprimir y pasar a la acción.
+
+          Cada QR tiene un código alfanumérico que nos permitirá tomar las mediciones que necesitamos y a fin de evaluar su éxito. Tu también vas a poder ver cuántas veces han sido escaneados tus QR en nuestro centro de monitorización online.
+
+          Este código tiene la forma "xxxxxxxx-#", donde los primeros 8 caracteres corresponden a tu identificador único, que en tu caso es el "{{ item.grafana_code }}", y el último carácter después del guión corresponde al identificador de QR, que es un dígito que va del 0 al número de QR que hayas pedido. Si quieres puedes hacerte una tabla y apuntar en qué calle o localización colocaste el cartel correspondiente al último dígito, para llevar un mejor control, saber si han podido retirar el cartel, cuál es el que tiene mayor visibilidad, etc.
+
+          Aquí tienes tu panel personal asociado a los QR adjuntos en este email.
           https://grafana.unconditionalbasicincome.eu/d/{{ item.grafana_code }}/{{ item.grafana_code }}?orgId=1
-          
+
           Recuerda que deberás imprimir los carteles y colocarlos antes del domingo 29 de noviembre por las calles de nuestra ciudades. Si puedes colocarlo en algún comercio, mejor.
-          
+
           Por último hacer notar que en esta campaña contamos con más de 500 QR que pondremos por toda España. La campaña durará hasta el 15 de diciembre y entonces realizaremos una valoración y conteo de las firmas que hayamos podido conseguir mediante esta acción colectiva.
-          
-          Queremos que la colocación de estos carteles sea algo divertido y por eso invitamos a todos a que os hagáis una fotografía colocando los carteles, o junto a los que ya habéis puesto, y la mandéis al grupo de Telegram de la asamblea. 
-          
-          Queremos llenar España de QR y la ICE de firmas! ¡Mucho ánimo!
+
+          Queremos que la colocación de estos carteles sea algo divertido y por eso invitamos a todos a que os hagáis una fotografía colocando los carteles, o junto a los que ya habéis puesto, y la mandéis al grupo de Telegram de la asamblea.
+
+          Queremos llenar España de QR y la ICE de firmas!¡Mucho ánimo!
+
+
+          Bonus: utiliza este enlace personalizado para enviar por redes sociales, whatsapp, email, etc. También incluye monitorización!
+          https://firma.rentabasicauniversal.es/{{ item.grafana_code }}-ice
+          Si tienes cualquier duda técnica, no dudes en consultar a Carlos: tharga8616@gmail.com
+
         attach:
           - "./media/qr_images/{{ item.grafana_code }}.zip"
           - "./media/posters/pdf/{{ item.grafana_code }}.pdf"
       delegate_to: localhost
-      ignore_errors: yes        
+      ignore_errors: yes
       loop: "{{ qr_list }}"
