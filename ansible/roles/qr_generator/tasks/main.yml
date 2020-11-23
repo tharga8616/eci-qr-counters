@@ -46,7 +46,7 @@
           - "{{ item.email }}"
         cc:
           - "{{ to_tharga8616 }}"
-         # - "{{ to_victor }}"
+          - "{{ to_victor }}"
         subject: "🔥Ya tienes aquí los QR solicitados 🔳"
         body: |
           ¡Comenzamos! Ya tienes aquí los QR solicitados.
@@ -79,3 +79,4 @@
       delegate_to: localhost
       ignore_errors: yes
       loop: "{{ qr_list }}"
+      tags: mail
