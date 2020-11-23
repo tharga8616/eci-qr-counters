@@ -19,9 +19,16 @@
       loop: "{{ qr_list }}"
       tags: graphite
 
+    - name: create main script for graphite feed scripts
+      template: 
+        src: main.sh.j2
+        dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/main.sh"
+        mode: 0755
+      tags: graphite
+      
     - name: cronjob that updates graphite each 5 minutos
       cron:
         name: "update graphite qr counters"
         minute: "*/5"
-        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/*"
+        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/main.sh"
       tags: graphite
