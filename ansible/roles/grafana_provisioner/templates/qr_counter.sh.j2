@@ -7,9 +7,9 @@ SERVER=$(docker inspect --format='{{ '{{' }}range .NetworkSettings.Networks{{ '}
 {% for panel in item.qr_codes %}
 # ID: {{ item.grafana_code }} CODE: {{ panel }}
 COUNT=$(cat /var/log/nginx/ice_access.log|grep '"GET /{{ item.grafana_code }}-{{ panel }}'|egrep -v 'sempi.tech|applebot|Twitterbot|externalhit_uatext.php|datagnionbot|Semanticbot|Mediatoolkitbot' | awk '{print $1}' | uniq| wc -l)
-echo contador.{{ item.grafana_code }}.{{ panel }} $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0
+echo qr_counter.{{ item.grafana_code }}.{{ panel }} $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0
 
 {% endfor %}
 
 COUNT=$(cat /var/log/nginx/ice_access.log|grep '"GET /{{ item.grafana_code }}-ice'|egrep -v 'sempi.tech|applebot|Twitterbot|externalhit_uatext.php|datagnionbot|Semanticbot|Mediatoolkitbot' | awk '{print $1}' | uniq| wc -l)
-echo contador.{{ item.grafana_code }}.ice $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0
+echo qr_counter.{{ item.grafana_code }}.ice $COUNT  `date +%s` | netcat ${SERVER} ${PORT} -w0

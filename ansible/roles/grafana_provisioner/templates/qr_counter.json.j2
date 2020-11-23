@@ -69,7 +69,7 @@
         {
           "refCount": 0,
           "refId": "{{ item.grafana_code }}",
-          "target": "aliasByMetric(contador.{{ item.grafana_code }}.*)"
+          "target": "aliasByMetric(qr_counter.{{ item.grafana_code }}.*)"
         }
       ],
       "timeFrom": null,
@@ -79,7 +79,7 @@
     },
     {
       "aliasColors": {
-        "contador.redirect": "red"
+        "qr_counter.redirect": "red"
       },
       "bars": false,
       "dashLength": 10,
@@ -144,7 +144,7 @@
         {
           "refCount": 0,
           "refId": "{{ item.grafana_code }}",
-          "target": "aliasByMetric(contador.{{ item.grafana_code }}.*)"
+          "target": "aliasByMetric(qr_counter.{{ item.grafana_code }}.*)"
         }
       ],
       "thresholds": [],
