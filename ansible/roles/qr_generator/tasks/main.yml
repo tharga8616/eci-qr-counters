@@ -41,7 +41,7 @@
         port: 587
         username: "{{ username }}"
         password: "{{ password }}"
-        from: "{{ from_email }}"
+        from: "Renta Basica Incondicional <{{ from_email }}>"
         to:
           - "{{ item.email }}"
         cc:
@@ -66,11 +66,12 @@
 
           Queremos que la colocación de estos carteles sea algo divertido y por eso invitamos a todos a que os hagáis una fotografía colocando los carteles, o junto a los que ya habéis puesto, y la mandéis al grupo de Telegram de la asamblea.
 
-          Queremos llenar España de QR y la ICE de firmas!¡Mucho ánimo!
+          ¡Vamos allenar España de QR y la ICE de firmas! ¡Mucho ánimo!
 
 
-          BONUS: utiliza este enlace personalizado para enviar por redes sociales, whatsapp, email, etc. También incluye monitorización!
+          BONUS: comparte este enlace personalizado por redes sociales, whatsapp, email, etc. También incluye monitorización! (panel ice)
           https://firma.rentabasicauniversal.es/{{ item.grafana_code }}-ice
+
           Si tienes cualquier duda técnica, no dudes en consultar a Carlos: tharga8616@gmail.com
 
         attach:
