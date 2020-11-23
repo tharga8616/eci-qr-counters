@@ -29,6 +29,6 @@
     - name: cronjob that updates graphite each 5 minutos
       cron:
         name: "update graphite qr counters"
-        minute: "*/5"
+        minute: "*/30"
         job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/main.sh"
       tags: graphite
