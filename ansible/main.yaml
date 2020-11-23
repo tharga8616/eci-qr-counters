@@ -6,5 +6,7 @@
     - vault_vars.yaml
 
   roles:
-    - qr_generator
-    - grafana_provisioner
+    - role: qr_generator
+      tags: qr
+    - role: grafana_provisioner
+      tags: grafana

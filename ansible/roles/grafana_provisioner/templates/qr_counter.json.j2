@@ -1,5 +1,3 @@
-{%- set comma1 = joiner(",") -%}
-{%- set comma2 = joiner(",") -%}
 {
   "annotations": {
     "list": [
@@ -17,12 +15,12 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [],
   "panels": [
     {
       "datasource": null,
-      "description": "From domain sign.unconditionalbasicincome.eu",
+      "description": "Cada contador corresponde a un código qr, muestra las visitas totales hasta el momento.",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -45,8 +43,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 6,
+        "h": 5,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -68,18 +66,15 @@
       },
       "pluginVersion": "7.1.5",
       "targets": [
-{%- for panel in item.qr_codes %}{{ comma1() }}
         {
           "refCount": 0,
-          "refId": "{{ item.grafana_code }}-{{ panel }}",
-          "target": "alias(contador.{{ item.grafana_code }}-{{ panel }}, '{{ item.grafana_code }}-{{ panel }}')"
+          "refId": "{{ item.grafana_code }}",
+          "target": "aliasByMetric(contador.{{ item.grafana_code }}.*)"
         }
-{%- endfor %}
-
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Test",
+      "title": "Total",
       "type": "stat"
     },
     {
@@ -90,7 +85,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "From domain sign.unconditionalbasicincome.eu",
+      "description": "Esta gráfica muestra la evolución de escaneos de cada QR. \n\nLo ideal es tener una progresión lineal creciente.\n\nEs improbable una progresión exponencial dada la naturaleza física de los carteles de calle. Sí podría ocurrir en caso de difundirse por redes sociales y \"viralizarse\".\n\nSi alguna de las línea está completamente plana significa que durante este periodo no ha recibido visitas.",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -115,9 +110,9 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 12,
-        "w": 15,
+        "w": 24,
         "x": 0,
-        "y": 6
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 9,
@@ -146,20 +141,17 @@
       "stack": false,
       "steppedLine": false,
       "targets": [
-{%- for panel in item.qr_codes %}{{ comma2() }}
         {
           "refCount": 0,
-          "refId": "{{ item.grafana_code }}-{{ panel }}",
-          "target": "alias(contador.{{ item.grafana_code }}-{{ panel }}, '{{ item.grafana_code }}-{{ panel }}')"
+          "refId": "{{ item.grafana_code }}",
+          "target": "aliasByMetric(contador.{{ item.grafana_code }}.*)"
         }
-{%- endfor %}
-
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Contador",
+      "title": "Histórico",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -200,14 +192,14 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 26,
+  "schemaVersion": 1,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2020-11-05T23:00:00.000Z",
+    "from": "2020-11-22T23:00:00.000Z",
     "to": "now"
   },
   "timepicker": {

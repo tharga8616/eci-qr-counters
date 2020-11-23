@@ -2,7 +2,7 @@ qr_list:
   - email: "tharga8616@gmail.com"
     grafana_code: "g46zjxtr"
     number_of_posters: "1"
-    qr_codes: [0]
+    qr_codes: [0,1,2,3,4,5,6,7,8,9]
   - email: "tharga8616@gmail.com"
     grafana_code: "rxju6m0z"
     number_of_posters: "2"

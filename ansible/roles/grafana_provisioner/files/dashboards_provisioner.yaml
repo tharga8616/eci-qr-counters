@@ -4,7 +4,7 @@ providers:
   # <string> an unique provider name. Required
   - name: 'dashboards'
     # <int> Org id. Default to 1
-    orgId: 2
+    orgId: 1 
     # <string> name of the dashboard folder.
     folder: ''
     # <string> folder UID. will be automatically generated if not specified
@@ -22,4 +22,3 @@ providers:
       path: /var/lib/grafana/dashboards
       # <bool> use folder names from filesystem to create folders in Grafana
       foldersFromFilesStructure: true
-

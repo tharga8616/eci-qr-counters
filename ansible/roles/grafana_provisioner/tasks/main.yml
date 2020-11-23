@@ -7,7 +7,7 @@
     - name: generate dashboard
       template:
         src: qr_counter.json.j2
-        dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_counter_{{ item.grafana_code }}.json"
+        dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_codes_spain/qr_counter_{{ item.grafana_code }}.json"
       loop: "{{ qr_list }}"
       tags: counter
 
