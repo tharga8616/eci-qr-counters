@@ -1,49 +1,61 @@
 ---
-    - name: provisioning config
-      copy:
-        src: dashboards_provisioner.yaml
-        dest: /var/lib/docker/volumes/ecimonitoring_grafana-dashboards/_data/dashboards/dashboards_provisioner.yaml
+- name: provisioning config
+  copy:
+    src: dashboards_provisioner.yaml
+    dest: /var/lib/docker/volumes/ecimonitoring_grafana-dashboards/_data/dashboards/dashboards_provisioner.yaml
 
-    - name: generate qr dashboards
-      template:
-        src: qr_counter.json.j2
-        dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_codes_spain/qr_counter_{{ item.grafana_code }}.json"
-      loop: "{{ qr_list }}"
-      tags: counter
+- name: generate qr dashboards
+  template:
+    src: qr_counter.json.j2
+    dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_codes_spain/qr_counter_{{ item.grafana_code }}.json"
+  loop: "{{ qr_list }}"
+  tags: qr_counter
 
-     - name: generate organizations dashboards
-       template:
-         src: qr_counter.json.j2
-         dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_codes_spain/org_counter_{{ item.grafana_code }}.json"
-       loop: "{{ org_list }}"
-       tags: counter
+- name: generate organization dashboards
+  template:
+    src: org_counter.json.j2
+    dest: "/var/lib/docker/volumes/ecimonitoring_grafana-dashboards-json/_data/qr_codes_spain/qr_counter_{{ item.grafana_code }}.json"
+  loop: "{{ org_list }}"
+  tags: org_counter
 
-    - name: create nc script to feed graphite for QR
-      template:
-        src: qr_counter.sh.j2
-        dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh"
-        mode: 0755
-      loop: "{{ qr_list }}"
-      tags: graphite
+- name: create nc script to feed graphite for QR
+  template:
+    src: qr_counter.sh.j2
+    dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh"
+    mode: 0755
+  loop: "{{ qr_list }}"
+  tags: qr_graphite
 
-    - name: create nc script to feed graphite for organizations
-      template:
-        src: org_counter.sh.j2
-        dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh"
-        mode: 0755
-      loop: "{{ org_list }}"
-      tags: graphite
+- name: create nc script to feed graphite for organizations
+  template:
+    src: org_counter.sh.j2
+    dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh"
+    mode: 0755
+  loop: "{{ org_list }}"
+  tags: org_graphite
 
-    - name: create main script for graphite feed qr and org, graphite feed scripts
-      template:
-        src: main.sh.j2
-        dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/main.sh"
-        mode: 0755
-      tags: graphite
+- name: create main script for graphite feed for QRs
+  template:
+    src: qr_main.sh.j2
+    dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/qr_main.sh"
+    mode: 0755
+  tags: qr_graphite
 
-    - name: cronjob that updates graphite each 5 minutos
-      cron:
-        name: "update graphite qr counters"
-        minute: "*/15"
-        job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/main.sh"
-      tags: graphite
+- name: create main script for graphite feed for organizations
+  template:
+    src: org_main.sh.j2
+    dest: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/org_main.sh"
+    mode: 0755
+  tags: org_graphite
+
+- name: cronjob that updates graphite each 5 minutos
+  cron:
+    name: "update graphite counters"
+    minute: "*/15"
+    job: "/root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item }}_main.sh"
+  tags: 
+    - qr_graphite
+    - org_graphite
+  loop:
+    - qr
+    - org
