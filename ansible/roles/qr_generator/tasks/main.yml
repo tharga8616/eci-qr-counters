@@ -60,7 +60,7 @@
           Aquí tienes tu panel personal asociado a los QR adjuntos en este email.
           https://grafana.unconditionalbasicincome.eu/d/{{ item.grafana_code }}/{{ item.grafana_code }}?orgId=1
 
-          Por favor, escanea uno de los códigos, accede al link para comprobar que funciona y en 15 minutos debería aumentar el contador del panen del grafana. 
+          Por favor, escanea uno de los códigos, accede al link para comprobar que funciona y en 15 minutos debería aumentar el contador del panel del grafana. 
           
           Recuerda que deberás imprimir los carteles y colocarlos antes del domingo 29 de noviembre por las calles de nuestra ciudades. Si puedes colocarlo en algún comercio, mejor.
 
