@@ -69,12 +69,13 @@
         {
           "refCount": 0,
           "refId": "{{ item.grafana_code }}",
-          "target": "aliasByMetric(qr_counter.{{ item.grafana_code }}.*)"
+          "target": "sumSeries(qr_counter.{{ item.grafana_code }}.*, *)"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Total",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -124,6 +125,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -151,7 +154,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Histórico",
+      "title": "Evolución",
       "tooltip": {
         "shared": true,
         "sort": 0,

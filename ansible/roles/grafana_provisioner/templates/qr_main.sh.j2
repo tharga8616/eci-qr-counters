@@ -2,4 +2,5 @@
 
 {% for item in qr_list %}
 /root/eci-grafana/eci-monitoring/graphite/eci/qr_counters/{{ item.grafana_code }}.sh
+sleep 30
 {% endfor %}
